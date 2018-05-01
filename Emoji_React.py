@@ -25,6 +25,8 @@ r = random.SystemRandom()
 @asyncio.coroutine
 def on_message(message):
     yield from client.add_reaction(message, "\U0001F400")
+    if message.author == client.user and 'bitcoin' in message.content:
+        return
     if message.content.startswith('!everyone'):
         msg = '@everyone lmao'.format(message)
         yield from client.send_message(message.channel, msg)
@@ -65,7 +67,18 @@ def on_message(message):
     elif message.content.startswith('!rat'):
         msg = '\U0001F400\U0001F400\U0001F400\U0001F400\U0001F400\U0001F400\U0001F400\U0001F400\U0001F400\U0001F400\U0001F400'.format(message)
         yield from client.send_message(message.channel, msg)
-
+    elif 'bitcoin' in message.content:
+        msg = '>bitcoin. lmao nice meme'.format(message)
+        yield from client.send_message(message.channel, msg)
+    elif 'stupid' in message.content:
+        msg = discord.Embed()
+        msg.set_image(url="https://i.imgur.com/LFIi7yS.jpg")
+        yield from client.send_message(message.channel, embed=msg)
+    elif message.content.startswith('!god'):
+        msg = discord.Embed()
+        msg.set_image(url="https://i.imgur.com/pZi485H.jpg")
+        yield from client.send_message(message.channel, embed=msg)
+    
 @client.event
 @asyncio.coroutine
 def on_ready():
