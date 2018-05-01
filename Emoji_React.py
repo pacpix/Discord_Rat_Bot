@@ -35,7 +35,7 @@ def on_message(message):
         msg = 'Fuck the fascists'.format(message)
         yield from client.send_message(message.channel, msg)
     elif message.content.startswith('!takerate'):
-        rate = 'Q' + str(r.randint(1,5)) + ' Take'
+        rate = 'Q' + str(r.randint(1,4)) + ' Take'
         msg = rate.format(message)
         yield from client.send_message(message.channel, msg)
     elif message.content.startswith('!takematrix'):
