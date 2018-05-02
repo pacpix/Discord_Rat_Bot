@@ -25,7 +25,7 @@ r = random.SystemRandom()
 @asyncio.coroutine
 def on_message(message):
     yield from client.add_reaction(message, "\U0001F400")
-    if message.author == client.user and 'bitcoin' in message.content:
+    if message.author == client.user:
         return
     if message.content.startswith('!everyone'):
         msg = '@everyone lmao'.format(message)
@@ -78,7 +78,11 @@ def on_message(message):
         msg = discord.Embed()
         msg.set_image(url="https://i.imgur.com/pZi485H.jpg")
         yield from client.send_message(message.channel, embed=msg)
-    
+    elif message.content.startswith('!GOD'):
+        msg = discord.Embed()
+        msg.set_image(url="https://i.imgur.com/VKqSxBH.jpg")
+        yield from client.send_message(message.channel, embed=msg)
+
 @client.event
 @asyncio.coroutine
 def on_ready():
