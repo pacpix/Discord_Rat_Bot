@@ -86,7 +86,7 @@ def on_message(message):
         msg = 'lol ur big dumb'.format(message)
         yield from client.send_message(message.channel, msg)
     elif message.content.startswith('!specifictakerate'):
-        msg = '(' + str(r.randint(0,999999999)) + ', ' + str(r.randint(0,999999999)) + ') Use !takerate for a more general take'.format(message)
+        msg = '(' + str(r.randint(-999999999,999999999)) + ', ' + str(r.randint(-999999999,999999999)) + ') Use !takerate for a more general take'.format(message)
         yield from client.send_message(message.channel, msg)
     elif message.content.startswith('!census'):
         msg = 'https://www2.census.gov/library/publications/decennial/1860/population/1860a-31.pdf'
