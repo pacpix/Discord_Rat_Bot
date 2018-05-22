@@ -95,6 +95,9 @@ def on_message(message):
         msg = discord.Embed()
         msg.set_image(url="https://i.imgur.com/k7FjY1m.jpg")
         yield from client.send_message(message.channel, embed=msg)
+    elif message.content.startswith('!git'):
+        msg = 'git commit -m "no need for pull request already reviewed changes dw"\ngit push origin master'
+        yield from client.send_message(message.channel, msg)
 
 @client.event
 @asyncio.coroutine
