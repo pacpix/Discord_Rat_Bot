@@ -27,6 +27,8 @@ def on_message(message):
     yield from client.add_reaction(message, "\U0001F400")
     if message.author == client.user:
         return
+    if str(message.channel) == "mike-comms":
+        yield from client.send_message(message.channel, message.content, tts=True)    
     if message.content.startswith('!everyone'):
         msg = '@everyone lmao'.format(message)
         yield from client.send_message(message.channel, msg)
@@ -98,6 +100,8 @@ def on_message(message):
     elif message.content.startswith('!git'):
         msg = 'git commit -m "no need for pull request already reviewed changes dw"\ngit push origin master'
         yield from client.send_message(message.channel, msg)
+
+
 
 @client.event
 @asyncio.coroutine
