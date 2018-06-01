@@ -71,7 +71,7 @@ def on_message(message):
         yield from client.send_message(message.channel, msg)
     elif 'bitcoin' in message.content:
         msg = '>bitcoin. lmao nice meme'.format(message)
-        yield from client.send_message(message.channel, msg)
+        yield from client.send_message(message.channel, msg, tts=True)
     elif 'stupid' in message.content:
         msg = discord.Embed()
         msg.set_image(url="https://i.imgur.com/LFIi7yS.jpg")
