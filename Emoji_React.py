@@ -107,6 +107,14 @@ def on_message(message):
     elif 'ethereum' in message.content:
         msg = '>ethereum. lmao nice meme'.format(message)
         yield from client.send_message(message.channel, msg, tts=True)
+    elif 'shit' in message.content:
+        msg = discord.embed()
+        msg.set_image(url="https://i.imgur.com/E4MMD53.jpg")
+        yield from client.send_message(message.channel, embed=msg)
+    elif 'E' in message.content:
+        msg = discord.embed()
+        msg.set_image(url="https://i.imgur.com/paScsKo.png")
+        yield from client.send_message(message.channel, embed=msg)
 
 @client.event
 @asyncio.coroutine
