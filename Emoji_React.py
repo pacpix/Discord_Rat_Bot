@@ -2,7 +2,7 @@
 Justin Stachofsky
 Emoji_React.py
 Created: 4/30/2018
-Last Edit: 4/30/2018
+Last Edit: 9/12/2018
 
 Rat emoji reacts every post in the server.  Also responds to some commands. 
 Written poorly on purpose I swear.
@@ -25,10 +25,21 @@ r = random.SystemRandom()
 @asyncio.coroutine
 def on_message(message):
     yield from client.add_reaction(message, "\U0001F400")
+   
+    # Prevent infinite loop
     if message.author == client.user:
         return
+    # Use tts on mike-comms channel  
     if str(message.channel) == "mike-comms":
         yield from client.send_message(message.channel, message.content, tts=True)    
+
+    # Checks for bat dumbasses role
+    roleNames = [role.name for role in message.author.roles]
+    if "Bat Dumbasses" in roleNames:
+        msg = 'shut up bat'.format(message)
+        yield from client.send_message(message.channel, msg)
+
+    # Awful if statement for bot commands
     if message.content.startswith('!everyone'):
         msg = '@everyone lmao'.format(message)
         yield from client.send_message(message.channel, msg)
@@ -46,10 +57,10 @@ def on_message(message):
         msg = 'Q1 = Hot and Right, Q2 = Hot and Wrong, Q3 = Cold and Wrong, Q4 = Cold and Right'.format(message)
         yield from client.send_message(message.channel, msg)
     elif message.content.startswith('!thisi'):
-        msg = 'This but, ironically'.format(message)
+        msg = 'This, but ironically'.format(message)
         yield from client.send_message(message.channel, msg)
     elif message.content.startswith('!thisu'):
-        msg = 'This but, unironically'.format(message)
+        msg = 'This, but unironically'.format(message)
         yield from client.send_message(message.channel, msg)
     elif message.content.startswith('!child'):
         msg = 'Did a child write this?'.format(message)
@@ -110,10 +121,6 @@ def on_message(message):
     elif 'shit' in message.content:
         msg = discord.Embed()
         msg.set_image(url="https://i.imgur.com/E4MMD53.jpg")
-        yield from client.send_message(message.channel, embed=msg)
-    elif 'E' in message.content:
-        msg = discord.Embed()
-        msg.set_image(url="https://i.imgur.com/paScsKo.png")
         yield from client.send_message(message.channel, embed=msg)
 
 @client.event
